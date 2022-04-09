@@ -2,20 +2,21 @@ package puntoventa;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PuntoVenta {
 	
 	
 	private static ArrayList<Producto> productos = new ArrayList<Producto>();
 	
-	//constantes
+	//final convierte una variable en constantes, solo para lectura de datos
 	
-	public final static int OPCION_MENU_SALIR = 6;
-	public final static int OPCION_MENU_PAGAR = 5;
-	public final static int OPCION_MENU_CARRO = 4;
-	public final static int OPCION_MENU_ELIMINAR = 3;
-	public final static int OPCION_MENU_PRODUCTOS = 2;
-	public final static int OPCION_MENU_CREAR = 1;
+	public final static int OPCION_MENU_SALIR = 6;//listo
+	public final static int OPCION_MENU_PAGAR = 5;//falta
+	public final static int OPCION_MENU_CARRO = 4;//falta
+	public final static int OPCION_MENU_ELIMINAR = 3;//listo
+	public final static int OPCION_MENU_PRODUCTOS = 2;//listo
+	public final static int OPCION_MENU_CREAR = 1;//listo
 
 	public static void main(String[] args) {
 		int opcionSeleccionada;
@@ -41,33 +42,62 @@ public class PuntoVenta {
 		} while( opcionSeleccionada != OPCION_MENU_SALIR );
 		
 		
-		System.out.printf("Selecciono la opcion %d", opcionSeleccionada);
+		System.out.printf("Hasta luego que tenga un buen día! :)");
 	}
 	
+	
+	private static void agregarProducto() {
+		//mostrar productos 
+		//solicitar el 
+		
+		
+	}
+	
+	
 	private static void pagar() {
-		// TODO Auto-generated method stub
+		
+		
+		
 		
 	}
 
-	private static void agregarProducto() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private static void eliminarProducto() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	private static void verProducto() {
-		// TODO Auto-generated method stub
+		System.out.println("\nEstos son los productos disponibles actualmente:\n");
 		for( Producto producto : productos ){
-			System.out.printf("Codigo %s Producto: %s Precio %d %n"
+			System.out.printf("Codigo: %s Producto: %s Precio: %d %n"
 					, producto.getCodigo()
 					, producto.getNombre()
 					, producto.getPrecio()
 					);
 		}
+		
+		System.out.println("\nSeleccione el código que desea eliminar de la lista:\n");
+		Scanner teclado = new Scanner( System.in );
+		String eliminarCodigo = teclado.nextLine();
+		
+		for(int i = 0;i<productos.size();i++) {
+			if(productos.get(i).getCodigo().equals(eliminarCodigo)) {
+				productos.remove(i);
+				System.out.println("Se elimino el producto con codigo: " + eliminarCodigo);
+				break;
+			}
+		}	
+	}
+
+	private static void verProducto() {
+		// TODO Auto-generated method stub
+		System.out.println("Lista de productos creados:\n");
+		for( Producto producto : productos ){
+			System.out.printf("Codigo: %s Producto: %s Precio: %d %n"
+					, producto.getCodigo()
+					, producto.getNombre()
+					, producto.getPrecio()
+					);
+		}
+		System.out.println("\n");
+		
 	}
 
 	private static void crearProducto() {
@@ -93,7 +123,7 @@ public class PuntoVenta {
 		System.out.println("1. Crear Producto");
 		System.out.println("2. Ver Productos");
 		System.out.println("3. Eliminar Producto");
-		System.out.println("4. Agregar Prodcuto al carro");
+		System.out.println("4. Agregar Producto al carro");
 		System.out.println("5. Pagar");
 		System.out.println("6. SALIR");
 		
