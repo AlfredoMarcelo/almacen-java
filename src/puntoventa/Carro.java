@@ -5,29 +5,32 @@ import java.util.List;
 
 public class Carro {
 
-	List<Producto> carrito = new ArrayList<Producto>();
+	static List<Producto> carrito = new ArrayList<Producto>();
 	
 
-	public Carro() {
-	}
 
-	public Carro(List<Producto> carrito) {
-		this.carrito = carrito;
-	}
-
-	public List<Producto> getCarrito() {
+	public static List<Producto> getCarrito() {
 		return carrito;
 	}
 
-	public void setCarrito(List<Producto> carrito) {
-		this.carrito = carrito;
+	public static void vaciarCarro() {
+		carrito.clear();
 	}
 	
-	public void agregarProducto(Producto unidad ) {
-		this.carrito.add(unidad);
+	public static void agregarProducto(Producto unidad ) {
+		carrito.add(unidad);
 	}
 	
-	//agregar otro metodo,
+	public static int sumaUnidad() {
+		int total = 0;
+		for(Producto unidad:carrito) {
+			total += unidad.getPrecio(); 			
+		}
+		return total;
+	}
+	
+	
+	
 	
 	
 	

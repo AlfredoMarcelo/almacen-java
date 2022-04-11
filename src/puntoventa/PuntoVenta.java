@@ -49,6 +49,23 @@ public class PuntoVenta {
 	private static void agregarProducto() {
 		//mostrar productos 
 		//solicitar el 
+		for(Producto unidad:productos) {
+			System.out.printf("Producto: %s Precio: $%d%n",unidad.getNombre(),unidad.getPrecio());
+		}
+		
+		
+		Scanner teclado = new Scanner( System.in);
+		String unidad = teclado.nextLine();
+		
+		for(int i = 0;i<productos.size();i++) {
+			if(productos.get(i).getNombre().equals(unidad)) {
+				Producto uni = productos.get(i);
+				System.out.println("Este producto deseas agregar: " + uni);
+				Carro.agregarProducto(uni);
+				break;
+			}
+		}	
+		
 		
 		
 	}
