@@ -46,25 +46,37 @@ public class PuntoVenta {
 	}
 	
 	
-	private static void agregarProducto() {
-		//mostrar productos 
-		//solicitar el 
-		for(Producto unidad:productos) {
+	private static void agregarProducto() { 
+		int llave = 0;
+		
+		System.out.println("Productos disponibles para comprar:\n");
+		
+			for(Producto unidad:productos) {
 			System.out.printf("Producto: %s Precio: $%d%n",unidad.getNombre(),unidad.getPrecio());
 		}
 		
+			do{
+				System.out.println("Ingresa el nombre del producto que deseas agregar:\n");
+				Scanner teclado = new Scanner( System.in);
+				String unidad = teclado.nextLine();
+				
+				for(int i = 0;i<productos.size();i++) {
+					if(productos.get(i).getNombre().equals(unidad)) {
+						Producto uni = productos.get(i);
+						System.out.printf("=>El producto %s, fue agregado exitosamente <=\n", uni);
+						Carro.agregarProducto(uni);
+						llave = 1;
+						break;
+					}else {
+						System.out.println("Debe ingresar un producto disponible en la lista\n");//consultar por la repeticion de mensaje****************(break probado)
+						llave = 0;
+						continue;
+					}
+				}
 		
-		Scanner teclado = new Scanner( System.in);
-		String unidad = teclado.nextLine();
+		}while(llave != 1);
 		
-		for(int i = 0;i<productos.size();i++) {
-			if(productos.get(i).getNombre().equals(unidad)) {
-				Producto uni = productos.get(i);
-				System.out.println("Este producto deseas agregar: " + uni);
-				Carro.agregarProducto(uni);
-				break;
-			}
-		}	
+		System.out.println(Carro.getCarrito());
 		
 		
 		
@@ -72,10 +84,9 @@ public class PuntoVenta {
 	
 	
 	private static void pagar() {
+		int total = Carro.sumaUnidad();
 		
-		
-		
-		
+		System.out.printf("La cantidad a pagar es: => $%d pesos.\n\n", total);
 	}
 
 
